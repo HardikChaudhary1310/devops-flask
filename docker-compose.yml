@@ -1,0 +1,26 @@
+services:
+  web:
+    image: ${DOCKER_USERNAME:-local}/devops-flask:${IMAGE_TAG:-latest}
+    build: .
+    env_file: .env
+    ports:
+      - "${HOST_PORT:-5000}:5000"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "http://localhost:5000/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  monitor:
+    image: curlimages/curl:8.10.1
+    depends_on:
+      web:
+        condition: service_healthy
+    entrypoint: ["/bin/sh", "/monitor/healthcheck.sh"]
+    environment:
+      - HEALTH_URL=http://web:5000/health
+    volumes:
+      - ./healthcheck.sh:/monitor/healthcheck.sh:ro
+    restart: unless-stopped
