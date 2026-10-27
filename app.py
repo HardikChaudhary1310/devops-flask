@@ -10,7 +10,7 @@ APP_VERSION = os.getenv("APP_VERSION", "1.0.0")
 
 @app.route("/")
 def index():
-    return jsonify(message="Hello from the DevOps assessment app!", env=APP_ENV, version=APP_VERSION)
+    return jsonify(message="DevOps assessment App!!!", env=APP_ENV, version=APP_VERSION)
 
 
 @app.route("/health")
@@ -19,5 +19,5 @@ def health():
 
 
 if __name__ == "__main__":
-    # FIX: bind to 0.0.0.0 (not 127.0.0.1) so the app is reachable from outside the container
+    # FIX : bind to 0.0.0.0 (not 127.0.0.1) so the app is reachable from outside the container
     app.run(host="0.0.0.0", port=int(os.getenv("PORT", 5000)))

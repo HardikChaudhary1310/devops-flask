@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-# Option A: reload the service with minimal downtime using Docker Compose
 set -euo pipefail
 SERVICE=web
 

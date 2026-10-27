@@ -1,26 +1,28 @@
 # DevOps Assessment – Flask API
 
 ## 1. Bug Fix Explanation
-<!-- EDIT to match the actual bug you found in the starter repo -->
-The starter app bound Flask to `127.0.0.1`, so inside the container it only listened on loopback and was unreachable through the published port. I changed the bind address to `0.0.0.0`, aligned the port (`5000`) across `app.py`, `Dockerfile` and `docker-compose.yml`, and run it with Gunicorn in production.
+The starter app bound Flask to `127.0.0.1`, so inside the container it only listened on loopback and was unreachable through the published port. I changed the bind address to `0.0.0.0` and aligned the port (`5000`) across `app.py`, `Dockerfile` and `docker-compose.yml`. The app now runs with Gunicorn inside the container.
 
 ## 2. Links
-- GitHub: https://github.com/<your-username>/devops-flask
-- Docker Hub: https://hub.docker.com/r/<your-username>/devops-flask
+- GitHub: https://github.com/HardikChaudhary1310/devops-flask
+- Docker Hub: https://hub.docker.com/hardik713/devops-flask
 
 ## 3. Local Setup & Execution
 ```bash
-git clone https://github.com/<your-username>/devops-flask.git
+git clone https://github.com/HardikChaudhary1310/devops-flask.git
 cd devops-flask
-cp .env.example .env            # edit values
+cp .env.example .env  
+
 # Run tests
 python -m venv venv && source venv/bin/activate
 pip install -r requirements-dev.txt && pytest -v
+
 # Build & run locally
 docker compose up -d --build
 curl http://localhost:5000/ && curl http://localhost:5000/health
+
 # Pull the published image from Docker Hub instead
-docker pull <your-username>/devops-flask:latest
+docker pull hardik713/devops-flask:latest
 docker compose up -d
 # Zero-ish downtime redeploy
 ./deploy.sh
