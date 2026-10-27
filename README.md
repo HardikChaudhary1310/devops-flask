@@ -38,4 +38,7 @@ docker compose logs -f monitor
 - **Image hardening:** slim base, non-root user, no secrets baked in.
 
 ## 5. Demo Video
-https://www.loom.com/share/<your-video-id>
+The walkthrough is split into two short parts:
+
+- **Part 1 – Live demo, health monitoring and CI/CD pipeline:** https://www.loom.com/share/56e2fff2376a4e78a79f1f68cbd84923
+- **Part 2 – Docker Hub, code and deployment walkthrough:** https://www.loom.com/share/c8bce681cb7d46a5a3f48f5f29ddbc2b
